@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-6 mx-auto">
+          <h3 class="display-4 text-center">Quản Lý sinh viên</h3>
+          <div class="row">
+            <div class="col-6 form-group">
+              <label for="">Student's number : </label>
+              <input
+                type="text"
+                maxlength="3"
+                class="form-control"
+                id="txtMaSV"
+              />
+              <div id="divMaErr" class="text-danger"></div>
+            </div>
+            <div class="col-6 form-group">
+              <label for="">Student's name : </label>
+              <input type="text" class="form-control" id="txtTenSV" />
+              <div id="divNameErr" class="text-danger"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 form-group">
+              <label for="">Email : </label>
+              <input type="text" class="form-control" id="txtEmail" />
+            </div>
+            <div class="col-6 form-group">
+              <label for="">Password </label>
+              <input type="text" class="form-control" id="txtPass" />
+            </div>
+            <div class="col-6 form-group">
+              <label for="">Phone's number </label>
+              <input type="text" class="form-control" id="txtPhone" />
+              <!-- onkeyup="changePhone(value, 'txtErr') -->
+              <!-- co the truyen truc tiep id tu mot div khac vao parametter cua 1 function-->
+              <div id="txtErr" class="text-danger"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 form-group">
+              <label for="">Birthday : </label>
+              <input type="date" class="form-control" id="txtNgaySinh" />
+              <div id="divBirthdayErr" class="text-danger"></div>
+            </div>
+            <div class="col-6 form-group">
+              <label for="">Khóa học: </label>
+              <select name="" id="khSV" class="form-control">
+                <option>Select course</option>
+                <option>KH001</option>
+                <option>KH002</option>
+              </select>
+              <div id="divKhErr" class="text-danger"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4 form-group">
+              <label for="">Math's score : </label>
+              <input type="text" class="form-control" id="txtDiemToan" />
+              <div id="divToanErr" class="text-danger"></div>
+            </div>
+            <div class="col-4 form-group">
+              <label for="">Physics's score: </label>
+              <input type="text" class="form-control" id="txtDiemLy" />
+              <div id="divLyErr" class="text-danger"></div>
+            </div>
+            <div class="col-4 form-group">
+              <label for="">Chemistry's score : </label>
+              <input type="text" class="form-control" id="txtDiemHoa" />
+              <div id="divHoaErr" class="text-danger"></div>
+            </div>
+          </div>
+
+          <div class="form-group text-center">
+            <button class="btn btn-success" onclick="addStudent()" id="btnAdd">
+              Add student
+            </button>
+
+            <button
+              type="button"
+              style="display: none"
+              id="btnUpdate"
+              class="btn btn-warning"
+            >
+              Update
+            </button>
+          </div>
+        </div>
+        <div class="col-8 mx-auto">
+          <div class="form-group">
+            <input
+              id="txtSearch"
+              type="text"
+              class="form-control"
+              placeholder="Nhập tên cần tìm"
+            />
+          </div>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Mã Sinh Viên</th>
+                <th>Tên Sinh Viên</th>
+                <th>Email</th>
+                <th>Ngày Sinh</th>
+                <th>Khóa Học</th>
+                <th>Điểm Trung Bình</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="tbodySinhVien"></tbody>
+          </table>
+        </div>
+      </div>
+      <script
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"
+      ></script>
+
+      <!--  chèn vào vị trí cuối cùng  -->
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./validation.js"></script>
+    <script src="./oneStudent.js"></script>
+    <script src="./studentList.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
